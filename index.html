@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Secure Cycle TN</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
@@ -14,6 +14,7 @@
       padding: 0;
       line-height: 1.6;
     }
+
     header {
       display: flex;
       align-items: center;
@@ -25,26 +26,31 @@
       top: 0;
       z-index: 10;
     }
+
     .logo {
       display: flex;
       align-items: center;
       font-weight: 800;
       font-size: 1.2rem;
     }
+
     .logo img {
       height: 40px;
       margin-right: 10px;
     }
+
     .hero {
       padding: 4rem 2rem;
       text-align: center;
     }
+
     .hero h1 {
       font-size: 2.5rem;
       font-weight: 800;
       max-width: 800px;
       margin: 0 auto 2rem;
     }
+
     .button {
       background-color: #facc15;
       color: #000;
@@ -56,29 +62,35 @@
       margin: 1rem 0;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .button:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     }
+
     .content {
       padding: 2rem;
       max-width: 800px;
       margin: auto;
     }
+
     h2 {
       font-size: 1.8rem;
       margin-top: 2.5rem;
       font-weight: 700;
     }
+
     p {
       font-size: 1rem;
     }
+
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
       color: #444;
     }
+
     .modal {
       display: none;
       position: fixed;
@@ -92,6 +104,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .modal-content {
       background-color: #fff;
       padding: 2rem;
@@ -101,6 +114,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
       animation: fadeIn 0.3s ease;
     }
+
     .modal-content input, .modal-content textarea {
       width: 100%;
       padding: 0.75rem;
@@ -109,15 +123,18 @@
       border-radius: 0.5rem;
       font-family: inherit;
     }
+
     .close {
       float: right;
       font-size: 1.5rem;
       cursor: pointer;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
     @media (max-width: 600px) {
       .hero h1 {
         font-size: 1.8rem;
@@ -129,6 +146,48 @@
       .content {
         padding: 1rem;
       }
+    }
+
+    /* Chatbot Button + Popup */
+    #myChatButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #2A74E0;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #myChatButton:after {
+      content: '💬';
+      color: #fff;
+      font-size: 24px;
+      display: block;
+      text-align: center;
+      line-height: 60px;
+    }
+
+    #myChatPopup {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 400px;
+      height: 600px;
+      background: #fff;
+      border: 1px solid #ccc;
+      z-index: 10000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    #myChatPopup iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
@@ -166,6 +225,12 @@
     </div>
   </div>
 
+  <!-- Chatbot button + popup -->
+  <div id="myChatButton"></div>
+  <div id="myChatPopup">
+    <iframe src="https://bhas125.vercel.app/"></iframe>
+  </div>
+
   <footer>
     <p>© 2025 Secure Cycle TN. All Rights Reserved.</p>
   </footer>
@@ -174,15 +239,26 @@
     function openModal() {
       document.getElementById('formModal').style.display = 'flex';
     }
+
     function closeModal() {
       document.getElementById('formModal').style.display = 'none';
     }
+
     window.onclick = function(event) {
       const modal = document.getElementById('formModal');
       if (event.target == modal) {
         closeModal();
       }
     }
+
+    const chatButton = document.getElementById('myChatButton');
+    const chatPopup = document.getElementById('myChatPopup');
+    let chatOpen = false;
+
+    chatButton.addEventListener('click', () => {
+      chatOpen = !chatOpen;
+      chatPopup.style.display = chatOpen ? 'block' : 'none';
+    });
   </script>
 </body>
 </html>
